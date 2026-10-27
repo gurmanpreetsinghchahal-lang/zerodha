@@ -1,0 +1,486 @@
+/* ==========================================================================
+   Zenith Broking - Global Design System & Variables
+   Inspired by the minimalist, airy, and functional aesthetics of Zerodha
+   ========================================================================== */
+
+:root {
+  /* Brand & Accent Colors */
+  --color-primary: #387ed1;
+  --color-primary-hover: #2762a6;
+  --color-primary-active: #1d4d85;
+  --color-primary-light: #f3f7fd;
+  --color-primary-border: #c8ddf7;
+
+  /* Neutrals & Surfaces */
+  --color-bg-body: #ffffff;
+  --color-bg-subtle: #fbfbfb;
+  --color-bg-muted: #f4f5f7;
+  --color-bg-surface: #ffffff;
+  --color-border-hairline: #f0f0f0;
+  --color-border-subtle: #e5e7eb;
+  --color-border-medium: #d1d5db;
+
+  /* Typography Colors */
+  --color-text-heading: #222222;
+  --color-text-body: #424242;
+  --color-text-muted: #666666;
+  --color-text-subtle: #8e8e8e;
+  --color-text-inverse: #ffffff;
+
+  /* Financial Status Colors */
+  --color-gain: #28a745;
+  --color-gain-bg: #eaf7ed;
+  --color-loss: #df514c;
+  --color-loss-bg: #fdf2f2;
+  --color-warning: #e67e22;
+
+  /* Typography Scale */
+  --font-family-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-family-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.84375rem; /* 13.5px */
+  --font-size-base: 0.9375rem;/* 15px */
+  --font-size-md: 1.0625rem;  /* 17px */
+  --font-size-lg: 1.25rem;    /* 20px */
+  --font-size-xl: 1.5rem;     /* 24px */
+  --font-size-2xl: 2rem;      /* 32px */
+  --font-size-3xl: 2.5rem;    /* 40px */
+  --font-size-hero: clamp(2rem, 3.8vw, 2.875rem); /* 46px */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Layout & Spacing */
+  --container-max-width: 1140px;
+  --container-wide-width: 1240px;
+  --navbar-height: 72px;
+
+  --spacing-xxs: 0.25rem; /* 4px */
+  --spacing-xs: 0.5rem;   /* 8px */
+  --spacing-sm: 0.75rem;  /* 12px */
+  --spacing-md: 1rem;     /* 16px */
+  --spacing-lg: 1.5rem;   /* 24px */
+  --spacing-xl: 2rem;     /* 32px */
+  --spacing-2xl: 3rem;    /* 48px */
+  --spacing-3xl: 4.5rem;  /* 72px */
+  --spacing-section: clamp(3.5rem, 6vw, 6rem);
+
+  /* Border Radii (Zerodha uses subtle, crisp corners) */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* Shadows (Minimal, soft) */
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.12);
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   CSS Reset & Base Rules
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  line-height: 1.65;
+  color: var(--color-text-body);
+  background-color: var(--color-bg-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-body);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Tabular Numerals for accurate financial display */
+.tabular-nums {
+  font-family: var(--font-family-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Standard Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--container-wide-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
+}
+
+/* Section Shell */
+.section {
+  padding-top: var(--spacing-section);
+  padding-bottom: var(--spacing-section);
+  position: relative;
+}
+
+.section-subtle {
+  background-color: var(--color-bg-subtle);
+  border-top: 1px solid var(--color-border-hairline);
+  border-bottom: 1px solid var(--color-border-hairline);
+}
+
+/* Section Header Utility */
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto var(--spacing-3xl);
+}
+
+.section-header-left {
+  text-align: left;
+  max-width: 600px;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.section-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-heading);
+}
+
+.section-subtitle {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Hairline Divider */
+.hairline-divider {
+  height: 1px;
+  background-color: var(--color-border-hairline);
+  width: 100%;
+  border: none;
+}
+
+/* Accessible Screen Reader Only Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ==========================================================================
+   Button System
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Sizes */
+.btn-sm {
+  padding: 6px 14px;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.01em;
+}
+
+.btn-md {
+  padding: 10px 22px;
+  font-size: var(--font-size-base);
+}
+
+.btn-lg {
+  padding: 13px 30px;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* Variants with Tactile Claymorphic Depth */
+.btn-primary {
+  background: linear-gradient(145deg, #428bf6, #3275d8);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 4px 12px rgba(56, 126, 209, 0.28),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.45),
+    inset -2px -2px 4px rgba(20, 70, 140, 0.35);
+  border-radius: var(--radius-sm);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary,
+.btn-primary *,
+.btn-primary .btn-label,
+.btn-primary .btn-icon,
+.btn-primary span {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(145deg, #4b92ff, #296ecf);
+  box-shadow: 
+    0 6px 16px rgba(56, 126, 209, 0.38),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.55),
+    inset -2px -2px 5px rgba(20, 70, 140, 0.45);
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.btn-primary:hover *,
+.btn-primary:hover .btn-label {
+  color: #ffffff !important;
+}
+
+.btn-primary:active {
+  background: linear-gradient(145deg, #2b6ecd, #397ee2);
+  box-shadow: 
+    0 2px 5px rgba(56, 126, 209, 0.25),
+    inset 2px 2px 5px rgba(10, 45, 95, 0.5),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.3);
+  color: #ffffff !important;
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-secondary {
+  background: linear-gradient(145deg, #ffffff, #edf0f4);
+  color: var(--color-text-heading);
+  border: 1px solid #dbe0e8;
+  box-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.05),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.07);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(145deg, #ffffff, #e5e9f0);
+  box-shadow: 
+    0 5px 12px rgba(0, 0, 0, 0.08),
+    inset 2px 2px 4px rgba(255, 255, 255, 1),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.1);
+  color: #111111;
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  background: linear-gradient(145deg, #e2e6ed, #f3f5f8);
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.14),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.7);
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-clay-buy {
+  background: linear-gradient(145deg, #498ff7, #2c73db);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 4px 10px rgba(45, 115, 219, 0.3),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.45),
+    inset -2px -2px 4px rgba(15, 55, 120, 0.35);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-clay-buy,
+.btn-clay-buy *,
+.btn-clay-buy span {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+.btn-clay-buy:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 14px rgba(45, 115, 219, 0.4),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.55),
+    inset -2px -2px 4px rgba(15, 55, 120, 0.45);
+  color: #ffffff !important;
+}
+
+.btn-clay-buy:hover *,
+.btn-clay-buy:hover span {
+  color: #ffffff !important;
+}
+
+.btn-clay-buy:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 
+    0 2px 4px rgba(45, 115, 219, 0.25),
+    inset 2px 2px 4px rgba(10, 45, 95, 0.5);
+}
+
+.btn-clay-sell {
+  background: linear-gradient(145deg, #ff6b3d, #ea4310);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 4px 10px rgba(234, 67, 16, 0.3),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.45),
+    inset -2px -2px 4px rgba(140, 30, 5, 0.35);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-clay-sell:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 14px rgba(234, 67, 16, 0.4),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.55),
+    inset -2px -2px 4px rgba(140, 30, 5, 0.45);
+}
+
+.btn-clay-sell:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 
+    0 2px 4px rgba(234, 67, 16, 0.25),
+    inset 2px 2px 4px rgba(120, 25, 5, 0.5);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-hover);
+}
+
+.btn-text {
+  background-color: transparent;
+  color: var(--color-primary);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.btn-text:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Focus States */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

@@ -1,0 +1,144 @@
+/* ==========================================================================
+   Trust & Statistics Section Styles
+   ========================================================================== */
+
+.stats-section {
+  background-color: #ffffff;
+  border-top: 1px solid var(--color-border-hairline);
+  border-bottom: 1px solid var(--color-border-hairline);
+}
+
+.stats-manifesto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+  margin-bottom: var(--spacing-3xl);
+}
+
+.stats-manifesto-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  line-height: 1.25;
+  margin-bottom: var(--spacing-xl);
+}
+
+.stats-principles-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.principle-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.principle-heading {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+.principle-desc {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Right Illustration: Ecosystem Diagram / Graphic */
+.stats-ecosystem-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-hairline);
+  border-radius: var(--radius-md);
+}
+
+.ecosystem-svg {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+}
+
+.stats-disclaimer-note {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+  text-align: center;
+  margin-top: var(--spacing-md);
+}
+
+/* Metric Counters Grid */
+.stats-metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl) 0;
+  border-top: 1px solid var(--color-border-hairline);
+}
+
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md);
+}
+
+.metric-number {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.metric-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin-bottom: 4px;
+}
+
+.metric-desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
+.metric-tag {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--color-primary);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .stats-manifesto-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+  }
+
+  .stats-metrics-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 500px) {
+  .stats-metrics-strip {
+    grid-template-columns: 1fr;
+  }
+}

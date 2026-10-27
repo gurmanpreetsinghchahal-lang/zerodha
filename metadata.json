@@ -1,0 +1,6 @@
+{
+  "name": "Zenith Broking",
+  "description": "Zero-brokerage stock trading, equity investments, and direct mutual funds platform inspired by Zerodha.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

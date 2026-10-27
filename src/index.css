@@ -1,0 +1,12 @@
+@import "./styles/global.css";
+@import "./styles/Navbar.css";
+@import "./styles/Hero.css";
+@import "./styles/Stats.css";
+@import "./styles/Products.css";
+@import "./styles/Pricing.css";
+@import "./styles/Calculator.css";
+@import "./styles/Education.css";
+@import "./styles/Faq.css";
+@import "./styles/AuthModal.css";
+@import "./styles/Footer.css";
+@import "./styles/TradingTerminal.css";

@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Auth / Demo Account Modal Styles
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 460px;
+  background-color: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-modal);
+  border: 1px solid var(--color-border-subtle);
+  overflow: hidden;
+  position: relative;
+  animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-md);
+}
+
+.modal-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text-heading);
+}
+
+.modal-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-heading);
+}
+
+.modal-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border-hairline);
+  padding: 0 var(--spacing-xl);
+}
+
+.modal-tab-btn {
+  padding: 10px 16px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.modal-tab-btn.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.modal-body {
+  padding: var(--spacing-xl);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-base);
+  color: var(--color-text-heading);
+  transition: border-color var(--transition-fast);
+}
+
+.form-input:focus {
+  border-color: var(--color-primary);
+}
+
+.form-input.error {
+  border-color: var(--color-loss);
+  background-color: #fff9f9;
+}
+
+.form-error-msg {
+  font-size: 11px;
+  color: var(--color-loss);
+  margin-top: 2px;
+}
+
+.form-disclaimer {
+  font-size: 11px;
+  color: var(--color-text-subtle);
+  line-height: 1.4;
+  margin-top: 8px;
+}
+
+/* Success Confirmation State */
+.modal-success-state {
+  text-align: center;
+  padding: var(--spacing-lg) var(--spacing-sm);
+}
+
+.modal-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--color-gain-bg);
+  color: var(--color-gain);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-md);
+}
+
+.modal-success-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.modal-success-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.5;
+}
+
+.modal-credentials-card {
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-hairline);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+  text-align: left;
+}
+
+.modal-credential-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-xs);
+  padding: 4px 0;
+}

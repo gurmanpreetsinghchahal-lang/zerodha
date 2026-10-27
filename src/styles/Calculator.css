@@ -1,0 +1,179 @@
+/* ==========================================================================
+   Brokerage Calculator Styles
+   ========================================================================== */
+
+.calculator-wrapper {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border-hairline);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2xl);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  margin-top: var(--spacing-3xl);
+}
+
+.calc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-2xl);
+  border-bottom: 1px solid var(--color-border-hairline);
+  padding-bottom: var(--spacing-lg);
+}
+
+.calc-title-box h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.calc-title-box p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+/* Segmented Control for Market Segment */
+.calc-segments {
+  display: flex;
+  background-color: var(--color-bg-muted);
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  gap: 2px;
+}
+
+.calc-segment-btn {
+  padding: 6px 14px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  border-radius: var(--radius-xs);
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.calc-segment-btn.active {
+  background-color: #ffffff;
+  color: var(--color-primary);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Calculator Grid */
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--spacing-2xl);
+}
+
+.calc-inputs-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.calc-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calc-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+.calc-input-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.calc-input-prefix {
+  position: absolute;
+  left: 12px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-subtle);
+  pointer-events: none;
+}
+
+.calc-input {
+  width: 100%;
+  padding: 10px 12px 10px 28px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-base);
+  color: var(--color-text-heading);
+  background-color: #ffffff;
+  transition: border-color var(--transition-fast);
+}
+
+.calc-input:focus {
+  border-color: var(--color-primary);
+}
+
+/* Results Column */
+.calc-results-col {
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-hairline);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calc-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: var(--spacing-lg);
+}
+
+.calc-breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-body);
+}
+
+.calc-breakdown-row span:first-child {
+  color: var(--color-text-muted);
+}
+
+.calc-net-card {
+  padding: var(--spacing-md);
+  border-radius: var(--radius-sm);
+  background-color: #ffffff;
+  border: 1px solid var(--color-border-hairline);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calc-net-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+.calc-net-amount {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.calc-net-amount.gain {
+  color: var(--color-gain);
+}
+
+.calc-net-amount.loss {
+  color: var(--color-loss);
+}
+
+@media (max-width: 768px) {
+  .calc-grid {
+    grid-template-columns: 1fr;
+  }
+}

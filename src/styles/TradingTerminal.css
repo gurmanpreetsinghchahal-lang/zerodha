@@ -1,0 +1,953 @@
+/* ==========================================================================
+   Zenith Kite Trading Terminal Styles - Professional Claymorphic Edition
+   ========================================================================== */
+
+.terminal-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f7f9fa;
+  color: #333333;
+  overflow: hidden;
+  font-family: var(--font-family-sans);
+}
+
+/* --------------------------------------------------------------------------
+   Terminal Header Bar
+   -------------------------------------------------------------------------- */
+.terminal-header {
+  height: 56px;
+  background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+  border-bottom: 1px solid #e1e4e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  flex-shrink: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.terminal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.terminal-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.terminal-logo svg {
+  color: var(--color-primary);
+  width: 24px;
+  height: 24px;
+}
+
+.terminal-market-indices {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 12px;
+  border-left: 1px solid #e6e9ee;
+  padding-left: 18px;
+}
+
+.market-index-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.index-name {
+  font-weight: 600;
+  color: #555555;
+  font-size: 11px;
+}
+
+.index-val {
+  font-weight: 700;
+  color: #111111;
+}
+
+.index-chg.gain { color: var(--color-gain); }
+.index-chg.loss { color: var(--color-loss); }
+
+/* Navigation in Terminal Header */
+.terminal-header-nav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 6px;
+}
+
+.terminal-nav-btn {
+  height: 38px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555555;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.terminal-nav-btn:hover {
+  background: #ffffff;
+  color: var(--color-primary);
+  border-color: #e5e9f0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.terminal-nav-btn.active {
+  background: linear-gradient(145deg, #ffffff, #f0f4fa);
+  color: var(--color-primary);
+  border-color: #cbdcf4;
+  font-weight: 600;
+  box-shadow: 
+    0 3px 8px rgba(56, 126, 209, 0.12),
+    inset 1px 1px 2px rgba(255, 255, 255, 1),
+    inset -1px -1px 2px rgba(56, 126, 209, 0.1);
+}
+
+.terminal-nav-badge {
+  font-size: 10px;
+  font-weight: 700;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  padding: 1px 5px;
+  border-radius: 999px;
+  box-shadow: 0 1px 3px rgba(56, 126, 209, 0.4);
+}
+
+/* User & Profile Controls */
+.terminal-user-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 1px solid #e6e9ee;
+  padding-left: 18px;
+}
+
+.terminal-client-id {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: linear-gradient(145deg, #f0f5fc, #e1edfc);
+  padding: 4px 9px;
+  border-radius: 4px;
+  border: 1px solid #d2e3f8;
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8), 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.terminal-exit-btn {
+  font-size: 12px;
+  font-weight: 600;
+  color: #444;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #ffffff, #edf0f5);
+  border: 1px solid #d5dae2;
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.05),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.9),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all var(--transition-fast);
+}
+
+.terminal-exit-btn:hover {
+  background: linear-gradient(145deg, #ffffff, #e6ebf2);
+  color: #111;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.terminal-exit-btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* --------------------------------------------------------------------------
+   Terminal Main Workspace Split
+   -------------------------------------------------------------------------- */
+.terminal-workspace {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   Left Column: Watchlist Sidebar
+   -------------------------------------------------------------------------- */
+.watchlist-pane {
+  border-right: 1px solid #e1e4e8;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.watchlist-search-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-bottom: 1px solid #f0f2f5;
+  background-color: #fafbfc;
+  gap: 8px;
+}
+
+.watchlist-search-icon {
+  color: #888;
+}
+
+.watchlist-search-input {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  width: 100%;
+  color: #222;
+  outline: none;
+}
+
+.watchlist-item-count {
+  font-size: 11px;
+  color: #888;
+  white-space: nowrap;
+}
+
+.watchlist-list {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.watchlist-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 16px;
+  border-bottom: 1px solid #f4f6f8;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  position: relative;
+}
+
+.watchlist-row:hover {
+  background-color: #f8fafc;
+}
+
+.watchlist-row.selected {
+  background-color: #f1f6fd;
+  border-left: 3px solid var(--color-primary);
+}
+
+.watchlist-symbol-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.watchlist-sym {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.watchlist-exch {
+  font-size: 10px;
+  color: #888888;
+}
+
+.watchlist-price-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.watchlist-ltp {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.watchlist-change {
+  font-size: 11px;
+}
+
+.watchlist-change.gain { color: var(--color-gain); }
+.watchlist-change.loss { color: var(--color-loss); }
+
+/* Claymorphic Quick Hover Action Buttons on Watchlist */
+.watchlist-hover-actions {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  gap: 6px;
+  background-color: #ffffff;
+  padding-left: 8px;
+  box-shadow: -12px 0 10px #ffffff;
+}
+
+.watchlist-row:hover .watchlist-hover-actions {
+  display: flex;
+}
+
+.watch-act-btn {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.watch-act-btn.buy {
+  background: linear-gradient(145deg, #498ff7, #2c73db);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 3px 6px rgba(45, 115, 219, 0.28),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.45),
+    inset -1px -1px 3px rgba(15, 55, 120, 0.35);
+}
+
+.watch-act-btn.buy,
+.watch-act-btn.buy * {
+  color: #ffffff !important;
+}
+
+.watch-act-btn.buy:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(45, 115, 219, 0.38);
+}
+
+.watch-act-btn.buy:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow: inset 1px 1px 3px rgba(10, 45, 95, 0.5);
+}
+
+.watch-act-btn.sell {
+  background: linear-gradient(145deg, #ff6b3d, #ea4310);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 3px 6px rgba(234, 67, 16, 0.28),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.45),
+    inset -1px -1px 3px rgba(140, 30, 5, 0.35);
+}
+
+.watch-act-btn.sell:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(234, 67, 16, 0.38);
+}
+
+.watch-act-btn.sell:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow: inset 1px 1px 3px rgba(120, 25, 5, 0.5);
+}
+
+.watch-act-btn.chart {
+  background: linear-gradient(145deg, #ffffff, #edf0f5);
+  color: #444;
+  border: 1px solid #d5dae2;
+  box-shadow: 
+    0 2px 5px rgba(0, 0, 0, 0.05),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.9),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.watch-act-btn.chart:hover {
+  color: #111;
+  background: linear-gradient(145deg, #ffffff, #e5e9f0);
+}
+
+/* Watchlist Footer Tabs (1 - 5) */
+.watchlist-tabs-footer {
+  height: 40px;
+  display: flex;
+  border-top: 1px solid #e1e4e8;
+  background-color: #fafbfc;
+}
+
+.watchlist-tab-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  border: none;
+  border-right: 1px solid #eef1f5;
+  background: transparent;
+  transition: all var(--transition-fast);
+}
+
+.watchlist-tab-item:last-child {
+  border-right: none;
+}
+
+.watchlist-tab-item:hover {
+  background-color: #f0f3f7;
+  color: #222;
+}
+
+.watchlist-tab-item.active {
+  background: #ffffff;
+  color: var(--color-primary);
+  border-top: 2px solid var(--color-primary);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: Active View Area
+   -------------------------------------------------------------------------- */
+.terminal-content-pane {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f7f9fa;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   Dashboard View
+   -------------------------------------------------------------------------- */
+.terminal-dashboard {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1280px;
+}
+
+.dashboard-greeting-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 18px 24px;
+  border: 1px solid #e1e4e8;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.dashboard-user-greeting h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.dashboard-user-greeting p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+.dashboard-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.kpi-card {
+  background-color: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.kpi-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #666;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #f0f2f5;
+  padding-bottom: 10px;
+}
+
+.kpi-main-val {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.kpi-sub-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 12.5px;
+}
+
+.kpi-sub-row {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+}
+
+.kpi-sub-row span:last-child {
+  font-weight: 600;
+  color: #222;
+}
+
+/* --------------------------------------------------------------------------
+   Chart & Market Depth Two-Column Split
+   -------------------------------------------------------------------------- */
+.chart-and-depth-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 20px;
+}
+
+/* Terminal Chart Widget */
+.terminal-chart-widget {
+  background-color: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chart-widget-title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.chart-sym-big {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* Claymorphic Timeframe Buttons */
+.chart-controls {
+  display: flex;
+  gap: 6px;
+  background: #f1f3f7;
+  padding: 3px;
+  border-radius: 6px;
+}
+
+.timeframe-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: #555;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.timeframe-pill:hover {
+  color: #111;
+}
+
+.timeframe-pill.active {
+  background: linear-gradient(145deg, #ffffff, #f2f5f9);
+  color: var(--color-primary);
+  box-shadow: 
+    0 2px 5px rgba(0, 0, 0, 0.08),
+    inset 1px 1px 2px rgba(255, 255, 255, 1),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Indicator pills bar */
+.chart-indicators-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f2f5;
+  font-size: 11px;
+}
+
+.indicator-toggle {
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid #dbe1ea;
+  background: #f7f9fa;
+  color: #555;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.indicator-toggle.active {
+  background: linear-gradient(145deg, #eaf2fd, #dbe8fb);
+  color: var(--color-primary);
+  border-color: #bad3f5;
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+/* --------------------------------------------------------------------------
+   5-Level Market Depth (Bid / Ask Ladder)
+   -------------------------------------------------------------------------- */
+.market-depth-card {
+  background-color: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.market-depth-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #444;
+  border-bottom: 1px solid #f0f2f5;
+  padding-bottom: 8px;
+}
+
+.depth-tables-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.depth-side-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.depth-side-title.bid { color: #4184f3; }
+.depth-side-title.ask { color: #ff5722; }
+
+.depth-mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.depth-mini-table th {
+  color: #888;
+  font-weight: 600;
+  padding: 4px 2px;
+  border-bottom: 1px solid #eee;
+}
+
+.depth-mini-table td {
+  padding: 5px 2px;
+  color: #333;
+}
+
+.depth-bar-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.depth-bar-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0.12;
+}
+
+.depth-bar-bg.bid { background-color: #4184f3; }
+.depth-bar-bg.ask { background-color: #ff5722; }
+
+.depth-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  padding-top: 8px;
+  margin-top: 8px;
+  border-top: 1px solid #f0f2f5;
+}
+
+/* --------------------------------------------------------------------------
+   Data Tables (Holdings, Orders, Positions)
+   -------------------------------------------------------------------------- */
+.terminal-table-container {
+  padding: 24px;
+  background-color: #ffffff;
+  min-height: 100%;
+}
+
+.table-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.table-header-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.terminal-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.terminal-data-table th {
+  background-color: #f8fafc;
+  color: #666;
+  font-weight: 600;
+  padding: 11px 16px;
+  border-top: 1px solid #e1e4e8;
+  border-bottom: 1px solid #e1e4e8;
+  font-size: 12px;
+}
+
+.terminal-data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f2f5;
+  color: #333;
+}
+
+.terminal-data-table tr:hover td {
+  background-color: #f7f9fa;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.status-badge.complete {
+  background-color: #eaf7ed;
+  color: var(--color-gain);
+}
+
+.status-badge.pending {
+  background-color: #fff8e6;
+  color: #d97706;
+}
+
+.status-badge.cancelled {
+  background-color: #fdf2f2;
+  color: var(--color-loss);
+}
+
+/* --------------------------------------------------------------------------
+   Order Pad Modal
+   -------------------------------------------------------------------------- */
+.orderpad-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 2500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.orderpad-window {
+  width: 100%;
+  max-width: 440px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  animation: slideUp 0.15s ease;
+}
+
+.orderpad-header {
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.orderpad-header.buy {
+  background: linear-gradient(145deg, #428bf6, #2d72d7);
+}
+
+.orderpad-header.sell {
+  background: linear-gradient(145deg, #ff6b3d, #ea4310);
+}
+
+.orderpad-title-box {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.orderpad-sym {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.orderpad-price-tag {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.orderpad-close {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.orderpad-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.orderpad-radio-group {
+  display: flex;
+  gap: 18px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.orderpad-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.orderpad-inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.orderpad-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.orderpad-field label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #555;
+}
+
+.orderpad-field input {
+  padding: 9px 12px;
+  border: 1px solid #d2d6dc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.orderpad-footer {
+  padding: 14px 18px;
+  background-color: #fafbfc;
+  border-top: 1px solid #e1e4e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.orderpad-margin-req {
+  font-size: 12px;
+  color: #666;
+}
+
+.orderpad-margin-req span {
+  font-weight: 700;
+  color: #111;
+}
+
+.orderpad-action-btns {
+  display: flex;
+  gap: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1040px) {
+  .chart-and-depth-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 850px) {
+  .terminal-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .watchlist-pane {
+    display: none;
+  }
+
+  .terminal-market-indices {
+    display: none;
+  }
+
+  .dashboard-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
